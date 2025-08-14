@@ -1,0 +1,55 @@
+{
+  "name": "mern-bug-tracker",
+  "version": "1.0.0",
+  "description": "Full-stack MERN Bug Tracker application with deployment and DevOps setup",
+  "main": "server/server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && npm run dev",
+    "client:dev": "cd client && npm run dev",
+    "server:start": "cd server && npm start",
+    "client:start": "cd client && npm start",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "test": "concurrently \"npm run server:test\" \"npm run client:test\"",
+    "server:test": "cd server && npm test",
+    "client:test": "cd client && npm test",
+    "build": "cd client && npm run build",
+    "build:prod": "bash scripts/build-production.sh",
+    "deploy:check": "bash deployment/deploy.sh check",
+    "deploy:status": "bash deployment/deploy.sh status",
+    "deploy:all": "bash deployment/deploy.sh all",
+    "lint": "concurrently \"npm run server:lint\" \"npm run client:lint\"",
+    "server:lint": "cd server && npm run lint",
+    "client:lint": "cd client && npm run lint",
+    "clean": "rm -rf node_modules server/node_modules client/node_modules client/dist production",
+    "setup": "npm run install:all && npm run build"
+  },
+  "keywords": [
+    "mern",
+    "mongodb",
+    "express",
+    "react",
+    "node",
+    "bug-tracker",
+    "devops",
+    "deployment",
+    "ci-cd"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/week-7-devops-deployment-assignment-mAdsting.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/week-7-devops-deployment-assignment-mAdsting/issues"
+  },
+  "homepage": "https://github.com/yourusername/week-7-devops-deployment-assignment-mAdsting#readme"
+}

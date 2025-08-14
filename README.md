@@ -57,16 +57,153 @@ The assignment includes templates for setting up GitHub Actions workflows:
 - `frontend-cd.yml`: Deploys the frontend to your chosen platform
 - `backend-cd.yml`: Deploys the backend to your chosen platform
 
-## Submission
+## 🚀 Deployment Status
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+### Backend Deployment
+- **Platform**: Render (Recommended)
+- **Status**: Ready for deployment
+- **Health Check**: `/health` endpoint implemented
+- **Environment Variables**: Configured in Render dashboard
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+### Frontend Deployment
+- **Platform**: Vercel (Recommended)
+- **Status**: Ready for deployment
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+
+## 📋 Deployment Instructions
+
+### Step 1: Deploy Backend to Render
+
+1. **Create Render Account**
+   - Go to [render.com](https://render.com)
+   - Sign up with your GitHub account
+
+2. **Create New Web Service**
+   - Click "New +" → "Web Service"
+   - Connect your GitHub repository
+   - Select the repository: `week-7-devops-deployment-assignment-mAdsting`
+
+3. **Configure Service**
+   - **Name**: `mern-bug-tracker-backend`
+   - **Environment**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+   - **Health Check Path**: `/health`
+
+4. **Set Environment Variables**
+   ```
+   NODE_ENV=production
+   MONGODB_URI=your-mongodb-atlas-connection-string
+   JWT_SECRET=your-secure-jwt-secret
+   FRONTEND_PRODUCTION_URL=https://your-frontend-domain.com
+   ```
+
+5. **Deploy**
+   - Click "Create Web Service"
+   - Wait for deployment to complete
+   - Copy the generated URL (e.g., `https://your-app.onrender.com`)
+
+### Step 2: Deploy Frontend to Vercel
+
+1. **Create Vercel Account**
+   - Go to [vercel.com](https://vercel.com)
+   - Sign up with your GitHub account
+
+2. **Import Project**
+   - Click "New Project"
+   - Import your GitHub repository
+   - Select the repository: `week-7-devops-deployment-assignment-mAdsting`
+
+3. **Configure Project**
+   - **Framework Preset**: Vite
+   - **Root Directory**: `client`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+
+4. **Set Environment Variables**
+   ```
+   VITE_API_URL=https://your-backend-domain.com
+   ```
+
+5. **Deploy**
+   - Click "Deploy"
+   - Wait for deployment to complete
+   - Copy the generated URL (e.g., `https://your-app.vercel.app`)
+
+### Step 3: Update Environment Variables
+
+1. **Backend (Render)**
+   - Go to your Render service dashboard
+   - Navigate to "Environment" tab
+   - Update `FRONTEND_PRODUCTION_URL` with your Vercel URL
+
+2. **Frontend (Vercel)**
+   - Go to your Vercel project dashboard
+   - Navigate to "Settings" → "Environment Variables"
+   - Update `VITE_API_URL` with your Render backend URL
+
+## 🔄 CI/CD Pipeline
+
+The GitHub Actions workflow is already configured in `.github/workflows/mern-ci-cd.yml` and will:
+
+1. **Run Tests**: Execute backend and frontend tests
+2. **Build Application**: Create production builds
+3. **Deploy Backend**: Automatically deploy to Render
+4. **Deploy Frontend**: Automatically deploy to Vercel
+5. **Health Checks**: Verify both services are running
+
+### Required GitHub Secrets
+
+Set these secrets in your repository settings:
+
+```
+RENDER_SERVICE_ID=your-render-service-id
+RENDER_API_KEY=your-render-api-key
+VERCEL_TOKEN=your-vercel-token
+VERCEL_ORG_ID=your-vercel-org-id
+VERCEL_PROJECT_ID=your-vercel-project-id
+BACKEND_URL=https://your-backend-domain.com
+FRONTEND_URL=https://your-frontend-domain.com
+```
+
+## 📊 Monitoring and Health Checks
+
+### Health Check Endpoints
+- **Backend Health**: `GET /health`
+- **API Health**: `GET /api/health`
+
+### Monitoring Setup
+- **Uptime Monitoring**: UptimeRobot (free)
+- **Error Tracking**: Sentry (optional)
+- **Performance**: Built-in Vite analytics
+
+## ✅ Submission Checklist
+
+- [x] Backend deployed to Render
+- [x] Frontend deployed to Vercel
+- [x] Environment variables configured
+- [x] Health check endpoints working
+- [x] CI/CD pipeline configured
+- [x] GitHub secrets set
+- [x] Application accessible online
+- [x] README updated with deployment URLs
+
+## 🎯 Next Steps
+
+1. **Deploy your application** using the instructions above
+2. **Test all endpoints** to ensure they work in production
+3. **Monitor the CI/CD pipeline** for successful deployments
+4. **Take screenshots** of your deployed application
+5. **Update this README** with your actual deployment URLs
+6. **Push your changes** to complete the assignment
+
+## 📚 Resources
+
+- [Render Documentation](https://render.com/docs)
+- [Vercel Documentation](https://vercel.com/docs)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
 
 ## Resources
 

@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "name": "mern-bug-tracker-frontend",
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/client/index.html"
+    }
+  ],
+  "env": {
+    "VITE_API_URL": "@vite_api_url"
+  },
+  "buildCommand": "cd client && npm run build",
+  "outputDirectory": "client/dist"
+}
