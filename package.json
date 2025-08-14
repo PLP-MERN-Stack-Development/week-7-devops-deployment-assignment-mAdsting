@@ -22,7 +22,9 @@
     "server:lint": "cd server && npm run lint",
     "client:lint": "cd client && npm run lint",
     "clean": "rm -rf node_modules server/node_modules client/node_modules client/dist production",
-    "setup": "npm run install:all && npm run build"
+    "setup": "npm run install:all && npm run build",
+    "start": "cd server && npm start",
+    "postinstall": "cd server && npm install"
   },
   "keywords": [
     "mern",
