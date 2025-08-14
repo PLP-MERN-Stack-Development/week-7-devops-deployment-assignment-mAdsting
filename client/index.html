@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MERN Bug Tracker - A comprehensive bug tracking system for testing and debugging practice" />
+    <meta name="keywords" content="bug tracker, MERN stack, testing, debugging, React, Node.js, MongoDB" />
+    <meta name="author" content="MERN Bug Tracker Team" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MERN Bug Tracker" />
+    <meta property="og:description" content="A comprehensive bug tracking system for testing and debugging practice" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MERN Bug Tracker" />
+    <meta name="twitter:description" content="A comprehensive bug tracking system for testing and debugging practice" />
+    
+    <title>🐛 MERN Bug Tracker</title>
+    
+    <!-- Global Styles -->
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.6;
+        color: #2d3748;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+      }
+
+      /* Loading animation */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 1rem;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .loading-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      /* Hide loading screen when app loads */
+      .loading-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Utility classes */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Focus styles for accessibility */
+      *:focus {
+        outline: 2px solid #4299e1;
+        outline-offset: 2px;
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Selection styles */
+      ::selection {
+        background: #4299e1;
+        color: white;
+      }
+
+      ::-moz-selection {
+        background: #4299e1;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading MERN Bug Tracker...</div>
+    </div>
+
+    <!-- Root element for React app -->
+    <div id="root"></div>
+
+    <!-- Script to hide loading screen when app loads -->
+    <script>
+      // Hide loading screen when React app mounts
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+              loadingScreen.remove();
+            }, 500);
+          }
+        }, 1000);
+      });
+
+      // Fallback: hide loading screen after 3 seconds
+      setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+          loadingScreen.classList.add('hidden');
+          setTimeout(() => {
+            loadingScreen.remove();
+          }, 500);
+        }
+      }, 3000);
+    </script>
+
+    <!-- Vite entry point -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html> 
