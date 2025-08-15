@@ -16,6 +16,10 @@ const getApiBaseURL = () => {
   return '/api';
 };
 
+// Debug: Log the API URL being used
+console.log('🔍 API Base URL:', getApiBaseURL());
+console.log('🔍 VITE_API_URL env var:', import.meta.env.VITE_API_URL);
+
 // Create axios instance with dynamic base URL
 const api = axios.create({
   baseURL: getApiBaseURL(),
