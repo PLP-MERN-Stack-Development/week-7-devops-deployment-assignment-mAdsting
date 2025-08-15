@@ -6,8 +6,21 @@ const mongoose = require('mongoose');
  */
 const connectDB = async () => {
   try {
+    // Debug: Log all environment variables (be careful with sensitive data)
+    console.log('🔍 Environment variables check:');
+    console.log('📍 NODE_ENV:', process.env.NODE_ENV);
+    console.log('📍 MONGODB_URI exists:', !!process.env.MONGODB_URI);
+    console.log('📍 MONGODB_URI length:', process.env.MONGODB_URI ? process.env.MONGODB_URI.length : 0);
+    console.log('📍 MONGODB_URI starts with:', process.env.MONGODB_URI ? process.env.MONGODB_URI.substring(0, 20) + '...' : 'undefined');
+    
     // Use correct environment variable name for Mongo connection
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mern-bug-tracker';
+    const mongoURI = process.env.MONGODB_URI;
+    
+    if (!mongoURI) {
+      console.error('❌ MONGODB_URI environment variable is not set!');
+      console.error('🔧 Please set MONGODB_URI in your environment variables.');
+      process.exit(1);
+    }
     
     console.log('🔌 Attempting to connect to MongoDB...');
     console.log('📍 Connection URI:', mongoURI);

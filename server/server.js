@@ -60,6 +60,20 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'MERN Bug Tracker API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      bugs: '/api/bugs',
+      docs: 'Check README for API documentation'
+    }
+  });
+});
+
 // API routes
 app.use('/api/bugs', bugsRouter);
 

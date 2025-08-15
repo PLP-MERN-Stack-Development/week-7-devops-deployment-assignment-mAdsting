@@ -6,9 +6,19 @@ import axios from 'axios';
  * Includes error handling, request/response logging, and debugging
  */
 
-// Create axios instance with default configuration
+// Get the API base URL from environment variables
+const getApiBaseURL = () => {
+  // In production, use the full backend URL
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  // In development, use the proxy (relative path)
+  return '/api';
+};
+
+// Create axios instance with dynamic base URL
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: getApiBaseURL(),
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
